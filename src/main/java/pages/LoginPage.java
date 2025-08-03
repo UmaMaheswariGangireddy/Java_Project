@@ -21,11 +21,9 @@ public class LoginPage {
     @FindBy(css = "img.passowrd-visible")
     private WebElement passwordToggle;
 
-    // Error message after invalid login
     @FindBy(xpath = "//p[@class='normal-text' and contains(text(),'Invalid Credentials')]")
     private WebElement errorMessage;
 
-    // The Reload button on the notification enable page
     @FindBy(xpath = "//button[contains(text(),'Reload')]")
     private WebElement reloadButton;
 
@@ -35,17 +33,13 @@ public class LoginPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // Handle notification "Reload" page if present
     public void handleReloadIfPresent() {
         try {
             wait.until(ExpectedConditions.visibilityOf(reloadButton));
             reloadButton.click();
-            // After reload, re-initialize page elements
             PageFactory.initElements(driver, this);
             wait.until(ExpectedConditions.visibilityOf(userIdInput));
-        } catch (TimeoutException ignored) {
-            // Reload not needed, proceed
-        }
+        } catch (TimeoutException ignored) {}
     }
 
     public void waitForPageLoad() {
@@ -102,4 +96,3 @@ public class LoginPage {
         }
     }
 }
-

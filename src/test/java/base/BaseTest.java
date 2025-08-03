@@ -18,7 +18,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
 
         Map<String, Object> prefs = new HashMap<>();
-        prefs.put("profile.default_content_setting_values.notifications", 1); // 1 = Allow
+        prefs.put("profile.default_content_setting_values.notifications", 1);
         options.setExperimentalOption("prefs", prefs);
 
         driver = new ChromeDriver(options);
@@ -33,4 +33,3 @@ public class BaseTest {
         }
     }
 }
-
